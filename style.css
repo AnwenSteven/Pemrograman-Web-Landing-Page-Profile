@@ -1,0 +1,167 @@
+/* Color Palette */
+:root {
+    --base-color: #6367FF;     /* Navbar, Footer, Base Sections */
+    --primary-color: #8494FF;  /* Selang-seling Background, Tombol Utama */
+    --secondary-color: #C9BEFF;/* Card bg, hover state */
+    --accent-color: #FFDBFD;   /* Teks utama, Highlight, Ikon di bg gelap */
+    --dark-text: #2C2C2C;      /* Untuk teks di atas background terang/putih */
+}
+
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+    background-color: #F8F9FA;
+}
+
+.text-accent { color: var(--accent-color) !important; }
+.color-base { color: var(--base-color) !important; }
+.color-bg-base { background-color: var(--base-color) !important; }
+
+/* Sections Backgrounds */
+.section-primary {
+    background-color: var(--primary-color);
+}
+
+/* Tambahkan baris baru ini di bawahnya khusus untuk Home */
+#home {
+    min-height: 100vh;
+}
+.section-light {
+    background-color: #FFFFFF;
+}
+.section-base {
+    background-color: var(--base-color);
+}
+
+/* Navbar */
+.custom-navbar {
+    background-color: var(--base-color);
+}
+.custom-navbar .navbar-brand, 
+.custom-navbar .nav-link {
+    color: var(--accent-color) !important;
+    transition: 0.3s ease;
+}
+.custom-navbar .nav-link:hover, 
+.custom-navbar .nav-link.active {
+    color: #FFFFFF !important;
+    transform: translateY(-2px);
+}
+.navbar-toggler {
+    border-color: var(--accent-color);
+}
+.navbar-toggler-icon {
+    filter: invert(88%) sepia(10%) saturate(1411%) hue-rotate(244deg) brightness(105%) contrast(102%);
+}
+
+/* Profile Image */
+.profile-img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid var(--accent-color);
+    transition: transform 0.3s ease;
+}
+.profile-img:hover {
+    transform: scale(1.05);
+}
+
+/* Slogan Container */
+.slogan-container {
+    min-height: 40px; /* Mencegah layout lompat saat animasi mengetik */
+}
+
+/* Timeline Cards (Pendidikan) */
+.timeline-card {
+    border: none;
+    border-left: 5px solid var(--base-color);
+    background-color: #F8F9FA;
+    transition: 0.3s ease;
+}
+.timeline-card:hover {
+    background-color: var(--secondary-color);
+    transform: translateX(10px);
+}
+.timeline-card h5 {
+    color: var(--dark-text);
+}
+
+/* Experience Cards */
+.exp-card {
+    border: none;
+    background-color: var(--secondary-color);
+    transition: 0.3s ease;
+    border-radius: 15px;
+}
+.exp-card:hover {
+    transform: translateY(-10px);
+    background-color: #b5a8fc;
+}
+.exp-icon {
+    font-size: 3rem;
+    color: var(--base-color);
+}
+
+/* Portfolio Cards */
+.port-card {
+    border: none;
+    border-top: 5px solid var(--primary-color);
+    transition: 0.3s ease;
+}
+.port-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+}
+.port-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+/* Buttons */
+.btn-custom {
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+    font-weight: bold;
+    border: none;
+}
+.btn-custom:hover {
+    background-color: var(--base-color);
+    color: var(--accent-color);
+}
+.btn-accent {
+    background-color: var(--accent-color);
+    color: var(--base-color);
+    font-weight: bold;
+}
+.btn-accent:hover {
+    background-color: #FFFFFF;
+    color: var(--base-color);
+}
+.btn-outline-accent {
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    font-weight: bold;
+}
+.btn-outline-accent:hover {
+    background-color: var(--accent-color);
+    color: var(--base-color);
+}
+
+/* Links */
+.link-hover:hover {
+    color: var(--accent-color) !important;
+    text-decoration: underline !important;
+}
+
+/* Scroll Reveal Animation Classes */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-in-out;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
