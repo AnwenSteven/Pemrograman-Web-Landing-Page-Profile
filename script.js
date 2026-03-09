@@ -1,34 +1,23 @@
-// 1. Typing Effect Logic untuk Bio/Slogan
-const textToType = "Saya adalah mahasiswa Teknik Informatika yang bersiap untuk menjadi developer game.";
-const typingSpeed = 50; // Kecepatan mengetik dalam ms
-let charIndex = 0;
-
-function typeWriter() {
-    if (charIndex < textToType.length) {
-        document.getElementById("typing-text").innerHTML += textToType.charAt(charIndex);
-        charIndex++;
-        setTimeout(typeWriter, typingSpeed);
-    }
-}
-
-// 2. Scroll Reveal Animation Logic
+// Fungsi untuk memunculkan elemen secara halus saat di-scroll
 function reveal() {
     var reveals = document.querySelectorAll(".reveal");
 
     for (var i = 0; i < reveals.length; i++) {
         var windowHeight = window.innerHeight;
         var elementTop = reveals[i].getBoundingClientRect().top;
-        var elementVisible = 100; // Kapan elemen mulai muncul
+        var elementVisible = 100; // Jarak trigger dari bawah layar
 
+        // Menambahkan kelas 'active' jika elemen sudah masuk viewport
         if (elementTop < windowHeight - elementVisible) {
             reveals[i].classList.add("active");
         }
     }
 }
 
-// Jalankan fungsi saat halaman dimuat dan di-scroll
+// Menjalankan event listener setiap kali layar digulir
 window.addEventListener("scroll", reveal);
+
+// Memastikan elemen yang sudah terlihat saat web pertama kali dimuat juga muncul
 window.onload = function() {
-    typeWriter(); // Mulai efek mengetik
-    reveal();     // Cek posisi scroll saat pertama kali render
+    reveal(); 
 };

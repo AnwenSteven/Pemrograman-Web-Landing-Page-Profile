@@ -1,165 +1,199 @@
-/* Color Palette */
+/* Color Palette & Variables */
 :root {
-    --base-color: #6367FF;     /* Navbar, Footer, Base Sections */
-    --primary-color: #8494FF;  /* Selang-seling Background, Tombol Utama */
-    --secondary-color: #C9BEFF;/* Card bg, hover state */
-    --accent-color: #FFDBFD;   /* Teks utama, Highlight, Ikon di bg gelap */
-    --dark-text: #2C2C2C;      /* Untuk teks di atas background terang/putih */
+    --base-color: #6367FF;     /* Biru/Ungu Gelap - Penekanan/Tombol */
+    --primary-color: #8494FF;  /* Biru/Ungu Sedang - Interaktif/Gradien */
+    --secondary-color: #C9BEFF;/* Ungu Muda - Aksen lembut */
+    --accent-color: #FFDBFD;   /* Pink/Ungu Pucat - Detail/Hover */
+    --text-dark: #1A1C29;      /* Hitam kebiruan untuk kontras baca */
+    
+    /* Glassmorphism Variables */
+    --glass-bg: rgba(255, 255, 255, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
 }
 
-/* Global Styles */
+/* Animated Gradient Background */
+@keyframes slowGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
     scroll-behavior: smooth;
-    background-color: #F8F9FA;
+    
+    /* Latar belakang gradien beranimasi */
+    background: linear-gradient(-45deg, #F0F2FF, var(--accent-color), var(--secondary-color), var(--primary-color));
+    background-size: 400% 400%;
+    animation: slowGradient 15s ease infinite;
+    background-attachment: fixed;
+    overflow-x: hidden;
 }
 
-.text-accent { color: var(--accent-color) !important; }
+/* Utilities */
 .color-base { color: var(--base-color) !important; }
-.color-bg-base { background-color: var(--base-color) !important; }
+.color-primary { color: var(--primary-color) !important; }
+.text-dark-blue { color: var(--text-dark) !important; }
+.bg-base-solid { background-color: var(--base-color) !important; color: white; }
+.max-w-800 { max-width: 800px; }
 
-/* Sections Backgrounds */
-.section-primary {
-    background-color: var(--primary-color);
-}
-
-/* Tambahkan baris baru ini di bawahnya khusus untuk Home */
-#home {
-    min-height: 100vh;
-}
-.section-light {
-    background-color: #FFFFFF;
-}
-.section-base {
-    background-color: var(--base-color);
+/* Glassmorphism Core Class */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: var(--glass-shadow);
+    transition: all 0.3s ease;
 }
 
 /* Navbar */
-.custom-navbar {
-    background-color: var(--base-color);
+.glass-navbar {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: 0.3s;
 }
-.custom-navbar .navbar-brand, 
-.custom-navbar .nav-link {
-    color: var(--accent-color) !important;
-    transition: 0.3s ease;
+.glass-navbar .nav-link {
+    color: var(--text-dark) !important;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 12px;
+    transition: 0.3s;
 }
-.custom-navbar .nav-link:hover, 
-.custom-navbar .nav-link.active {
-    color: #FFFFFF !important;
-    transform: translateY(-2px);
+.glass-navbar .nav-link:hover, 
+.glass-navbar .nav-link.active {
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--base-color) !important;
 }
-.navbar-toggler {
-    border-color: var(--accent-color);
-}
-.navbar-toggler-icon {
-    filter: invert(88%) sepia(10%) saturate(1411%) hue-rotate(244deg) brightness(105%) contrast(102%);
+.custom-toggler {
+    border: 1px solid var(--base-color);
 }
 
-/* Profile Image */
+/* Hero & Profile Image */
 .profile-img {
-    width: 250px;
-    height: 250px;
+    width: 280px;
+    height: 280px;
     object-fit: cover;
     border-radius: 50%;
-    border: 5px solid var(--accent-color);
-    transition: transform 0.3s ease;
+    border: 6px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 40px rgba(99, 103, 255, 0.2);
+    transition: transform 0.4s ease;
 }
 .profile-img:hover {
-    transform: scale(1.05);
-}
-
-/* Slogan Container */
-.slogan-container {
-    min-height: 40px; /* Mencegah layout lompat saat animasi mengetik */
-}
-
-/* Timeline Cards (Pendidikan) */
-.timeline-card {
-    border: none;
-    border-left: 5px solid var(--base-color);
-    background-color: #F8F9FA;
-    transition: 0.3s ease;
-}
-.timeline-card:hover {
-    background-color: var(--secondary-color);
-    transform: translateX(10px);
-}
-.timeline-card h5 {
-    color: var(--dark-text);
-}
-
-/* Experience Cards */
-.exp-card {
-    border: none;
-    background-color: var(--secondary-color);
-    transition: 0.3s ease;
-    border-radius: 15px;
-}
-.exp-card:hover {
-    transform: translateY(-10px);
-    background-color: #b5a8fc;
-}
-.exp-icon {
-    font-size: 3rem;
-    color: var(--base-color);
-}
-
-/* Portfolio Cards */
-.port-card {
-    border: none;
-    border-top: 5px solid var(--primary-color);
-    transition: 0.3s ease;
-}
-.port-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
-}
-.port-icon {
-    font-size: 3rem;
-    color: var(--primary-color);
+    transform: scale(1.03) translateY(-5px);
 }
 
 /* Buttons */
-.btn-custom {
-    background-color: var(--primary-color);
-    color: #FFFFFF;
-    font-weight: bold;
+.btn-glass-primary {
+    background: var(--base-color);
+    color: white;
+    font-weight: 600;
     border: none;
+    border-radius: 12px;
+    padding: 10px 24px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(99, 103, 255, 0.3);
+    transition: 0.3s;
 }
-.btn-custom:hover {
-    background-color: var(--base-color);
-    color: var(--accent-color);
-}
-.btn-accent {
-    background-color: var(--accent-color);
-    color: var(--base-color);
-    font-weight: bold;
-}
-.btn-accent:hover {
-    background-color: #FFFFFF;
-    color: var(--base-color);
-}
-.btn-outline-accent {
-    border: 2px solid var(--accent-color);
-    color: var(--accent-color);
-    font-weight: bold;
-}
-.btn-outline-accent:hover {
-    background-color: var(--accent-color);
-    color: var(--base-color);
+.btn-glass-primary:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(132, 148, 255, 0.4);
 }
 
-/* Links */
-.link-hover:hover {
-    color: var(--accent-color) !important;
+/* Badges */
+.glass-badge {
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--base-color);
+    border: 1px solid var(--glass-border);
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+/* Timeline */
+.timeline-glass {
+    border-left: 3px solid rgba(255, 255, 255, 0.6);
+    padding-left: 30px;
+    position: relative;
+}
+.timeline-item {
+    position: relative;
+    margin-bottom: 25px;
+}
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: var(--base-color);
+    border: 3px solid white;
+    border-radius: 50%;
+    left: -40.5px;
+    top: 20px;
+    box-shadow: 0 0 10px rgba(99, 103, 255, 0.4);
+}
+
+/* Icons & Cards Hover */
+.glass-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--base-color);
+    font-size: 1.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.card-hover:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.6);
+    border-color: white;
+    box-shadow: 0 15px 35px rgba(31, 38, 135, 0.15);
+}
+
+/* Social Buttons */
+.btn-social-glass {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--base-color);
+    border: 1px solid var(--glass-border);
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.btn-social-glass:hover {
+    background: var(--base-color);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(99, 103, 255, 0.3);
+}
+
+/* Footer Links */
+.footer-link:hover {
+    color: var(--base-color) !important;
     text-decoration: underline !important;
 }
 
-/* Scroll Reveal Animation Classes */
+/* Scroll Animation */
 .reveal {
     opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease-in-out;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
 }
 .reveal.active {
     opacity: 1;
